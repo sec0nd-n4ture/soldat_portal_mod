@@ -8,6 +8,9 @@ import sys
 class ModMain:
     def __init__(self) -> None:
         self.api = ModAPI()
+        if self.api.soldat_bridge.executable_hash != 1802620099:
+            print("Unsupported version for mod, exiting...")
+            sys.exit(1)
         self.api.subscribe_event(self.on_join, Event.DIRECTX_READY)
         self.api.subscribe_event(self.on_r_press, Event.R_KEY_UP)
         self.api.subscribe_event(self.on_c_press, Event.C_KEY_UP)
